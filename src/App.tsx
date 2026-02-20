@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Alphabet from "./pages/Alphabet";
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
