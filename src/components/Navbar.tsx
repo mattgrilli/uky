@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { lessons } from "../data/lessons";
 
@@ -13,6 +13,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [lessonsOpen, setLessonsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const classLessons = useMemo(() => lessons.filter((l) => l.classUnit), []);
+  const generalLessons = useMemo(() => lessons.filter((l) => !l.classUnit), []);
+  const classUnits = useMemo(() => [...new Set(classLessons.map((l) => l.classUnit!))].sort(), [classLessons]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -55,8 +59,36 @@ export default function Navbar() {
                 </svg>
               </button>
               {lessonsOpen && (
-                <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl py-1 min-w-45 z-50">
-                  {lessons.map((lesson) => (
+                <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl py-1 min-w-45 z-50 max-h-96 overflow-y-auto">
+                  {classUnits.map((unit) => (
+                    <div key={unit}>
+                      <p className="px-4 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                        Class Unit {unit}
+                      </p>
+                      {classLessons
+                        .filter((l) => l.classUnit === unit)
+                        .map((lesson) => (
+                          <NavLink
+                            key={lesson.id}
+                            to={`/lessons/${lesson.id}`}
+                            onClick={() => setLessonsOpen(false)}
+                            className={({ isActive }) =>
+                              `block px-4 py-2 text-sm transition-colors ${
+                                isActive
+                                  ? "bg-ua-blue-light text-ua-blue font-semibold"
+                                  : "text-gray-700 hover:bg-gray-100"
+                              }`
+                            }
+                          >
+                            {lesson.icon} {lesson.title}
+                          </NavLink>
+                        ))}
+                    </div>
+                  ))}
+                  <p className="px-4 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                    General
+                  </p>
+                  {generalLessons.map((lesson) => (
                     <NavLink
                       key={lesson.id}
                       to={`/lessons/${lesson.id}`}
@@ -109,10 +141,29 @@ export default function Navbar() {
             <NavLink to="/alphabet" className={linkClass} onClick={() => setOpen(false)}>
               Alphabet
             </NavLink>
+            {classUnits.map((unit) => (
+              <div key={unit}>
+                <p className="px-3 pt-2 pb-1 text-xs font-semibold text-white/50 uppercase tracking-wide">
+                  Class Unit {unit}
+                </p>
+                {classLessons
+                  .filter((l) => l.classUnit === unit)
+                  .map((lesson) => (
+                    <NavLink
+                      key={lesson.id}
+                      to={`/lessons/${lesson.id}`}
+                      className={linkClass}
+                      onClick={() => setOpen(false)}
+                    >
+                      {lesson.icon} {lesson.title}
+                    </NavLink>
+                  ))}
+              </div>
+            ))}
             <p className="px-3 pt-2 pb-1 text-xs font-semibold text-white/50 uppercase tracking-wide">
               Lessons
             </p>
-            {lessons.map((lesson) => (
+            {generalLessons.map((lesson) => (
               <NavLink
                 key={lesson.id}
                 to={`/lessons/${lesson.id}`}

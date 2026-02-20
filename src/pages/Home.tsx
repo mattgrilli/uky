@@ -9,6 +9,10 @@ export default function Home() {
   const { progress, overallPercent, updateStreak } = useProgress();
   const wordsToReview = getWordsToReview();
 
+  const classLessons = lessons.filter((l) => l.classUnit);
+  const generalLessons = lessons.filter((l) => !l.classUnit);
+  const classUnits = [...new Set(classLessons.map((l) => l.classUnit!))].sort();
+
   // Update streak on page load
   useEffect(() => {
     updateStreak();
@@ -60,6 +64,38 @@ export default function Home() {
         </div>
       )}
 
+      {/* Class Units */}
+      {classUnits.map((unit) => (
+        <div key={unit}>
+          <h2 className="text-xl font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+            Class Unit {unit}
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+            {classLessons
+              .filter((l) => l.classUnit === unit)
+              .map((lesson) => (
+                <Link
+                  key={lesson.id}
+                  to={`/lessons/${lesson.id}`}
+                  className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-green-500"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="text-4xl mb-3">{lesson.icon}</div>
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                      Unit {lesson.classUnit}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-800">{lesson.title}</h3>
+                  <p className="text-gray-500 text-sm mt-1">{lesson.description}</p>
+                  <p className="text-xs text-gray-400 mt-2">
+                    {lesson.words.length} words
+                  </p>
+                </Link>
+              ))}
+          </div>
+        </div>
+      ))}
+
       {/* Lessons */}
       <h2 className="text-xl font-bold text-gray-800 max-w-4xl mx-auto mb-4">
         Lessons
@@ -78,7 +114,7 @@ export default function Home() {
           </p>
         </Link>
 
-        {lessons.map((lesson) => (
+        {generalLessons.map((lesson) => (
           <Link
             key={lesson.id}
             to={`/lessons/${lesson.id}`}
