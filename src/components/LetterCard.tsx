@@ -1,10 +1,10 @@
 import type { UkrainianLetter } from "../data/alphabet";
 
 const categoryColors: Record<string, string> = {
-  vowel: "border-ua-blue bg-white",
-  consonant: "border-gray-400 bg-white",
-  semivowel: "border-ua-yellow bg-white",
-  sign: "border-amber-600 bg-white",
+  vowel: "border-ua-blue bg-gradient-to-br from-blue-50 to-white",
+  consonant: "border-gray-400 bg-gradient-to-br from-gray-50 to-white",
+  semivowel: "border-ua-yellow bg-gradient-to-br from-yellow-50 to-white",
+  sign: "border-amber-600 bg-gradient-to-br from-amber-50 to-white",
 };
 
 const categoryBadge: Record<string, string> = {
@@ -34,19 +34,19 @@ export default function LetterCard({
       <button
         onClick={onClick}
         className={`flip-card w-full aspect-square min-h-18 rounded-xl border-2 ${categoryColors[letter.category]}
-          shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer select-none`}
+          card-shadow-blue hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer select-none`}
       >
         <div className={`flip-card-inner w-full h-full relative ${flipped ? "flipped" : ""}`}>
           {/* Front */}
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-2">
-            <span className="text-4xl sm:text-5xl font-bold text-gray-800">
+            <span className="text-4xl sm:text-5xl font-display font-bold text-gray-800">
               {letter.upper}
             </span>
-            <span className="text-sm text-gray-500 mt-1">{letter.name}</span>
+            <span className="text-sm font-display text-gray-500 mt-1">{letter.name}</span>
           </div>
           {/* Back */}
-          <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center p-2 bg-ua-blue rounded-xl">
-            <span className="text-xl font-bold text-white">
+          <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center p-2 bg-gradient-to-br from-ua-blue to-ua-blue-dark rounded-xl">
+            <span className="text-xl font-display font-bold text-white">
               {letter.transliteration}
             </span>
             <span className="text-sm text-white/70">{letter.ipa}</span>
@@ -66,28 +66,28 @@ export default function LetterCard({
           {/* Front */}
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-8">
             <span
-              className={`text-xs px-2 py-0.5 rounded-full mb-4 ${categoryBadge[letter.category]}`}
+              className={`text-xs font-display font-semibold px-3 py-1 rounded-full mb-4 ${categoryBadge[letter.category]}`}
             >
               {letter.category}
             </span>
-            <span className="text-8xl font-bold text-gray-800">
+            <span className="text-8xl font-display font-bold text-gray-800">
               {letter.upper}
             </span>
-            <span className="text-4xl text-gray-400 mt-2">{letter.lower}</span>
-            <span className="text-lg text-gray-500 mt-4">
+            <span className="text-4xl font-display text-gray-400 mt-2">{letter.lower}</span>
+            <span className="text-lg font-display text-gray-500 mt-4">
               "{letter.name}"
             </span>
             <p className="text-sm text-gray-400 mt-2">Click to flip</p>
           </div>
           {/* Back */}
-          <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center p-8 bg-ua-blue rounded-2xl text-white">
-            <span className="text-5xl font-bold">{letter.transliteration}</span>
+          <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-ua-blue to-ua-blue-dark rounded-2xl text-white">
+            <span className="text-5xl font-display font-bold">{letter.transliteration}</span>
             <span className="text-xl text-white/70 mt-2">{letter.ipa}</span>
-            <p className="text-lg mt-4 text-center">
+            <p className="text-lg font-display mt-4 text-center">
               Sounds like {letter.hint}
             </p>
             <div className="mt-6 bg-white/10 rounded-lg px-4 py-3 text-center">
-              <p className="text-2xl">{letter.exampleWord}</p>
+              <p className="text-2xl font-display">{letter.exampleWord}</p>
               <p className="text-sm text-white/70">"{letter.exampleMeaning}"</p>
             </div>
             {onSpeak && (
@@ -96,7 +96,7 @@ export default function LetterCard({
                   e.stopPropagation();
                   onSpeak();
                 }}
-                className="mt-4 bg-ua-yellow text-ua-blue-dark font-semibold px-6 py-2 rounded-full hover:bg-yellow-300 transition-colors"
+                className="mt-4 bg-ua-yellow text-ua-blue-dark font-display font-semibold px-6 py-2 rounded-full btn-glow-yellow transition-all"
               >
                 Listen
               </button>

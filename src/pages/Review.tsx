@@ -4,6 +4,7 @@ import { getWordsToReview, recordWordResult } from "../lib/progress";
 import { getLessonById, getVocabAudioPath, type VocabWord } from "../data/lessons";
 import { shuffle } from "../data/alphabet";
 import QuizOption from "../components/QuizOption";
+import Confetti from "../components/Confetti";
 
 const REVIEW_SIZE = 10;
 
@@ -96,13 +97,13 @@ export default function Review() {
     return (
       <div className="page-enter text-center py-20 max-w-md mx-auto">
         <div className="text-6xl mb-4">🎉</div>
-        <h1 className="text-3xl font-bold text-ua-blue mb-3">Nothing to Review!</h1>
+        <h1 className="text-3xl font-display font-bold text-ua-blue mb-3">Nothing to Review!</h1>
         <p className="text-gray-500 mb-8">
           Take some quizzes first — any words you get wrong will appear here for review.
         </p>
         <Link
           to="/"
-          className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+          className="font-display bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-semibold btn-glow active:scale-95 transition-all"
         >
           Go to Lessons
         </Link>
@@ -111,12 +112,15 @@ export default function Review() {
   }
 
   if (finished) {
+    const isHighScore = score === questions.length;
     return (
       <div className="page-enter text-center py-12 max-w-md mx-auto">
-        <h1 className="text-4xl font-bold text-ua-blue mb-2">Review Complete!</h1>
-        <p className="text-6xl font-bold text-ua-yellow my-6">
+        {isHighScore && <Confetti />}
+        <h1 className="text-4xl font-display font-bold text-ua-blue mb-2 animate-celebrate">🌟 Review Complete!</h1>
+        <p className="text-7xl font-display font-bold text-gradient my-6 animate-score-pop">
           {score}/{questions.length}
         </p>
+        {isHighScore && <p className="text-2xl mb-2 animate-bounce-in">🏆✨🌟</p>}
         <p className="text-gray-500 mb-8">
           {score === questions.length
             ? "Perfect! Those words are getting stronger."
@@ -125,13 +129,13 @@ export default function Review() {
         <div className="flex gap-3 justify-center flex-wrap">
           <button
             onClick={restart}
-            className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+            className="font-display bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-semibold btn-glow active:scale-95 transition-all"
           >
             Review Again
           </button>
           <Link
             to="/"
-            className="border-2 border-ua-blue text-ua-blue px-6 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+            className="font-display border-2 border-ua-blue text-ua-blue px-8 py-3 rounded-full text-lg font-semibold hover:bg-ua-blue-light active:scale-95 transition-all"
           >
             Home
           </Link>
@@ -143,8 +147,8 @@ export default function Review() {
   return (
     <div className="page-enter max-w-lg mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-ua-blue">Review</h1>
-        <Link to="/" className="text-sm text-gray-400 hover:text-ua-blue">Home</Link>
+        <h1 className="text-2xl font-display font-bold text-ua-blue">Review</h1>
+        <Link to="/" className="text-sm text-ua-blue bg-gray-100 px-4 py-2 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all">Home</Link>
       </div>
 
       <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
@@ -165,7 +169,7 @@ export default function Review() {
 
         <button
           onClick={playAudio}
-          className="mt-3 text-ua-blue hover:underline text-sm inline-flex items-center gap-1"
+          className="mt-3 text-sm text-ua-blue bg-ua-blue-light px-4 py-2 rounded-full inline-flex items-center gap-1 active:scale-95 transition-all"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />

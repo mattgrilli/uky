@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getLessonById, getVocabAudioPath, type VocabWord } from "../data/lessons";
 import { shuffle } from "../data/alphabet";
 import ProgressBar from "../components/ProgressBar";
+import Confetti from "../components/Confetti";
 
 const PAIRS_PER_ROUND = 5;
 
@@ -48,7 +49,7 @@ export default function VocabMatch() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500">Lesson not found.</p>
-        <Link to="/" className="text-ua-blue underline mt-4 inline-block">Home</Link>
+        <Link to="/" className="text-ua-blue bg-ua-blue-light px-6 py-3 rounded-full mt-4 inline-block font-medium active:scale-95 transition-all">Home</Link>
       </div>
     );
   }
@@ -133,23 +134,26 @@ export default function VocabMatch() {
   if (finished) {
     const totalPairs = lesson.words.length;
     const score = Math.max(0, Math.round(((totalPairs - totalMistakes) / totalPairs) * 100));
+    const isHighScore = score >= 80;
     return (
       <div className="page-enter text-center py-12 max-w-md mx-auto">
-        <h1 className="text-4xl font-bold text-ua-blue mb-2">Game Over!</h1>
-        <p className="text-6xl font-bold text-ua-yellow my-6">{score}%</p>
+        {isHighScore && <Confetti />}
+        <h1 className="text-4xl font-display font-bold text-ua-blue mb-2 animate-celebrate">🔗 Game Over!</h1>
+        <p className="text-7xl font-display font-bold text-gradient my-6 animate-score-pop">{score}%</p>
+        {isHighScore && <p className="text-2xl mb-2 animate-bounce-in">🏆✨🌟</p>}
         <p className="text-gray-500 mb-2">
           {totalPairs} pairs with {totalMistakes} mistakes
         </p>
         <div className="flex gap-3 justify-center mt-8 flex-wrap">
           <button
             onClick={restart}
-            className="bg-ua-blue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-dark active:scale-95 transition-all"
+            className="font-display bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-semibold btn-glow active:scale-95 transition-all"
           >
             Play Again
           </button>
           <Link
             to={`/lessons/${lesson.id}`}
-            className="border-2 border-ua-blue text-ua-blue px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-light active:scale-95 transition-all"
+            className="font-display border-2 border-ua-blue text-ua-blue px-8 py-3 rounded-full text-lg font-semibold hover:bg-ua-blue-light active:scale-95 transition-all"
           >
             Back to Lesson
           </Link>
@@ -168,7 +172,7 @@ export default function VocabMatch() {
   return (
     <div className="page-enter max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-ua-blue">{lesson.title} Match</h1>
+        <h1 className="text-2xl font-display font-bold text-ua-blue">{lesson.title} Match</h1>
         <span className="text-sm text-gray-500">Mistakes: {state.mistakes}</span>
       </div>
 

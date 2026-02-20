@@ -29,7 +29,7 @@ function LetterGroup({
         onClick={() => setExpanded(!expanded)}
         className="flex items-center gap-2 mb-4 group cursor-pointer"
       >
-        <h2 className="text-xl font-bold text-gray-800">
+        <h2 className="text-xl font-display font-bold text-gray-800">
           {title}{" "}
           <span className="text-gray-400 font-normal">({count})</span>
         </h2>
@@ -44,13 +44,14 @@ function LetterGroup({
       </button>
       {expanded && (
         <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4">
-          {letters.map((letter) => (
-            <LetterCard
-              key={letter.index}
-              letter={letter}
-              compact
-              onClick={() => onLetterClick(letter)}
-            />
+          {letters.map((letter, i) => (
+            <div key={letter.index} className="stagger-item" style={{ "--i": i } as React.CSSProperties}>
+              <LetterCard
+                letter={letter}
+                compact
+                onClick={() => onLetterClick(letter)}
+              />
+            </div>
           ))}
         </div>
       )}
@@ -70,7 +71,7 @@ export default function Alphabet() {
   return (
     <div className="page-enter">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-ua-blue">
+        <h1 className="text-3xl font-display font-bold text-ua-blue">
           The Ukrainian Alphabet
         </h1>
         <p className="text-gray-500 mt-1">
@@ -79,19 +80,19 @@ export default function Alphabet() {
       </div>
 
       <LetterGroup
-        title="Vowels"
+        title="🔴 Vowels"
         count={vowels.length}
         letters={vowels}
         onLetterClick={handleClick}
       />
       <LetterGroup
-        title="Consonants"
+        title="🔵 Consonants"
         count={consonants.length}
         letters={consonants}
         onLetterClick={handleClick}
       />
       <LetterGroup
-        title="Semivowel & Sign"
+        title="🟡 Semivowel & Sign"
         count={semivowels.length + signs.length}
         letters={[...semivowels, ...signs]}
         onLetterClick={handleClick}

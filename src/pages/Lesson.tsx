@@ -84,7 +84,7 @@ export default function Lesson() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500 text-lg">Lesson not found.</p>
-        <Link to="/" className="text-ua-blue underline mt-4 inline-block">
+        <Link to="/" className="text-ua-blue bg-ua-blue-light px-6 py-3 rounded-full mt-4 inline-block font-medium active:scale-95 transition-all">
           Back Home
         </Link>
       </div>
@@ -96,7 +96,7 @@ export default function Lesson() {
   return (
     <div className="page-enter max-w-lg mx-auto">
       <div className="flex items-center justify-between mb-2">
-        <Link to="/" className="text-ua-blue hover:underline text-sm">
+        <Link to="/" className="text-sm text-ua-blue bg-gray-100 px-4 py-2 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all">
           &larr; Home
         </Link>
         <div className="flex gap-2">
@@ -115,7 +115,7 @@ export default function Lesson() {
         </div>
       </div>
 
-      <h1 className="text-3xl font-bold text-ua-blue">{lesson.title}</h1>
+      <h1 className="text-3xl font-display font-bold text-ua-blue">{lesson.title}</h1>
       <p className="text-gray-400 text-sm">{lesson.titleUk}</p>
       <p className="text-gray-500 mt-1 mb-6">{lesson.description}</p>
 
@@ -168,20 +168,20 @@ export default function Lesson() {
               <div className="flex gap-3 justify-center flex-wrap">
                 <Link
                   to={`/lessons/${lesson.id}/quiz`}
-                  className="bg-ua-blue text-white px-5 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+                  className="bg-ua-blue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-dark active:scale-95 transition-all"
                 >
                   Take Quiz
                 </Link>
                 <Link
                   to={`/lessons/${lesson.id}/match`}
-                  className="border-2 border-ua-blue text-ua-blue px-5 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+                  className="border-2 border-ua-blue text-ua-blue px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-light active:scale-95 transition-all"
                 >
                   Matching Game
                 </Link>
                 {lesson.id === "verbs" && (
                   <Link
                     to="/conjugation"
-                    className="border-2 border-purple-500 text-purple-600 px-5 py-2 rounded-full hover:bg-purple-50 transition-colors"
+                    className="border-2 border-purple-500 text-purple-600 px-6 py-3 rounded-full text-base font-medium hover:bg-purple-50 active:scale-95 transition-all"
                   >
                     Conjugation Tables
                   </Link>
@@ -211,20 +211,20 @@ export default function Lesson() {
             <div className="flex gap-3 justify-center flex-wrap">
               <Link
                 to={`/lessons/${lesson.id}/quiz`}
-                className="bg-ua-blue text-white px-5 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+                className="bg-ua-blue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-dark active:scale-95 transition-all"
               >
                 Take Quiz
               </Link>
               <Link
                 to={`/lessons/${lesson.id}/match`}
-                className="border-2 border-ua-blue text-ua-blue px-5 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+                className="border-2 border-ua-blue text-ua-blue px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-light active:scale-95 transition-all"
               >
                 Matching Game
               </Link>
               {lesson.id === "verbs" && (
                 <Link
                   to="/conjugation"
-                  className="border-2 border-purple-500 text-purple-600 px-5 py-2 rounded-full hover:bg-purple-50 transition-colors"
+                  className="border-2 border-purple-500 text-purple-600 px-6 py-3 rounded-full text-base font-medium hover:bg-purple-50 active:scale-95 transition-all"
                 >
                   Conjugation Tables
                 </Link>

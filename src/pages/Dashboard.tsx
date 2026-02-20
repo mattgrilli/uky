@@ -37,14 +37,14 @@ export default function Dashboard() {
   return (
     <div className="page-enter max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-ua-blue">Progress Dashboard</h1>
-        <Link to="/" className="text-sm text-gray-400 hover:text-ua-blue">Home</Link>
+        <h1 className="text-3xl font-display font-bold text-ua-blue">Progress Dashboard</h1>
+        <Link to="/" className="text-sm text-ua-blue bg-gray-100 px-4 py-2 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all">Home</Link>
       </div>
 
       {/* Top stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white rounded-xl shadow p-4 text-center">
-          <p className="text-3xl font-bold text-ua-blue">
+        <div className="bg-white rounded-xl shadow p-4 text-center border-t-4 border-ua-blue stagger-item" style={{ "--i": 0 } as React.CSSProperties}>
+          <p className="text-4xl font-display font-bold text-ua-blue">
             {streakInfo.current}
           </p>
           <p className="text-xs text-gray-400 mt-1">Day Streak</p>
@@ -52,20 +52,20 @@ export default function Dashboard() {
             <p className="text-xs text-green-500 mt-1">Active today</p>
           )}
         </div>
-        <div className="bg-white rounded-xl shadow p-4 text-center">
-          <p className="text-3xl font-bold text-ua-yellow">
+        <div className="bg-white rounded-xl shadow p-4 text-center border-t-4 border-ua-yellow stagger-item" style={{ "--i": 1 } as React.CSSProperties}>
+          <p className="text-4xl font-display font-bold text-ua-yellow">
             {progress.learnedLetters.length}/33
           </p>
           <p className="text-xs text-gray-400 mt-1">Letters Learned</p>
         </div>
-        <div className="bg-white rounded-xl shadow p-4 text-center">
-          <p className="text-3xl font-bold text-green-600">
+        <div className="bg-white rounded-xl shadow p-4 text-center border-t-4 border-green-500 stagger-item" style={{ "--i": 2 } as React.CSSProperties}>
+          <p className="text-4xl font-display font-bold text-green-600">
             {totalWordsStudied}
           </p>
           <p className="text-xs text-gray-400 mt-1">Words Studied</p>
         </div>
-        <div className="bg-white rounded-xl shadow p-4 text-center">
-          <p className="text-3xl font-bold" style={{ color: overallAccuracy >= 70 ? "#16a34a" : overallAccuracy >= 40 ? "#ca8a04" : "#dc2626" }}>
+        <div className="bg-white rounded-xl shadow p-4 text-center border-t-4 border-ua-blue stagger-item" style={{ "--i": 3 } as React.CSSProperties}>
+          <p className="text-4xl font-display font-bold" style={{ color: overallAccuracy >= 70 ? "#16a34a" : overallAccuracy >= 40 ? "#ca8a04" : "#dc2626" }}>
             {overallAccuracy}%
           </p>
           <p className="text-xs text-gray-400 mt-1">Overall Accuracy</p>
@@ -74,7 +74,7 @@ export default function Dashboard() {
 
       {/* Alphabet progress */}
       <div className="bg-white rounded-xl shadow p-5 mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3">Alphabet</h2>
+        <h2 className="text-lg font-display font-semibold text-gray-700 mb-3">Alphabet</h2>
         <ProgressBar current={progress.learnedLetters.length} total={33} label="Letters learned" />
       </div>
 
@@ -82,11 +82,11 @@ export default function Dashboard() {
       {wordsToReview.length > 0 && (
         <Link
           to="/review"
-          className="block bg-yellow-50 border-2 border-yellow-300 rounded-xl p-5 mb-6 hover:bg-yellow-100 transition-colors"
+          className="block bg-gradient-to-r from-ua-yellow-light to-yellow-100 border-2 border-yellow-300 rounded-xl p-5 mb-6 hover:bg-yellow-100 transition-colors animate-glow"
         >
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold text-yellow-800">
+              <h2 className="text-lg font-display font-semibold text-yellow-800">
                 {wordsToReview.length} word{wordsToReview.length !== 1 ? "s" : ""} to review
               </h2>
               <p className="text-sm text-yellow-600">
@@ -100,7 +100,7 @@ export default function Dashboard() {
 
       {/* Per-lesson accuracy */}
       <div className="bg-white rounded-xl shadow p-5 mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-4">Lesson Accuracy</h2>
+        <h2 className="text-lg font-display font-semibold text-gray-700 mb-4">Lesson Accuracy</h2>
         <div className="flex flex-col gap-3">
           {lessonStats.map(({ lesson, accuracy, total, correct, wrong }) => (
             <div key={lesson.id} className="flex items-center gap-3">
@@ -137,7 +137,7 @@ export default function Dashboard() {
 
       {/* Alphabet game stats */}
       <div className="bg-white rounded-xl shadow p-5 mb-6">
-        <h2 className="text-lg font-semibold text-gray-700 mb-4">Alphabet Games</h2>
+        <h2 className="text-lg font-display font-semibold text-gray-700 mb-4">Alphabet Games</h2>
         <div className="grid grid-cols-2 gap-4">
           {(
             [

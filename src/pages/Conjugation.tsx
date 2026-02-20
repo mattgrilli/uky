@@ -28,7 +28,7 @@ function ConjugationTable({ verb, index }: { verb: Conjugation; index: number })
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); playAudio(); }}
-            className="text-ua-blue hover:bg-ua-blue-light rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+            className="text-ua-blue hover:bg-ua-blue-light rounded-full w-10 h-10 flex items-center justify-center transition-colors active:scale-95 shrink-0"
             title="Listen"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -80,12 +80,12 @@ export default function ConjugationPage() {
   return (
     <div className="page-enter max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-2">
-        <Link to="/lessons/verbs" className="text-ua-blue hover:underline text-sm">
+        <Link to="/lessons/verbs" className="text-sm text-ua-blue bg-gray-100 px-4 py-2 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all">
           &larr; Verbs Lesson
         </Link>
       </div>
 
-      <h1 className="text-3xl font-bold text-ua-blue mb-1">Verb Conjugation</h1>
+      <h1 className="text-3xl font-display font-bold text-ua-blue mb-1">Verb Conjugation</h1>
       <p className="text-gray-500 mb-6">
         Present tense forms for 20 essential Ukrainian verbs. Tap a verb to see its conjugation table.
       </p>

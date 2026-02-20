@@ -4,6 +4,7 @@ import ProgressBar from "../components/ProgressBar";
 import { useProgress } from "../hooks/useProgress";
 import { useSpeech } from "../hooks/useSpeech";
 import { Link } from "react-router-dom";
+import Confetti from "../components/Confetti";
 
 const TOTAL_QUESTIONS = 15;
 
@@ -84,12 +85,15 @@ export default function TypingPractice() {
   };
 
   if (finished) {
+    const isHighScore = score >= 12;
     return (
       <div className="page-enter text-center py-12 max-w-md mx-auto">
-        <h1 className="text-4xl font-bold text-ua-blue mb-2">Practice Complete!</h1>
-        <p className="text-6xl font-bold text-ua-yellow my-6">
+        {isHighScore && <Confetti />}
+        <h1 className="text-4xl font-display font-bold text-ua-blue mb-2 animate-celebrate">⌨️ Practice Complete!</h1>
+        <p className="text-7xl font-display font-bold text-gradient my-6 animate-score-pop">
           {score}/{TOTAL_QUESTIONS}
         </p>
+        {isHighScore && <p className="text-2xl mb-2 animate-bounce-in">🏆✨🌟</p>}
         <p className="text-gray-500 mb-8">
           {score >= 12
             ? "Your typing is getting great!"
@@ -100,13 +104,13 @@ export default function TypingPractice() {
         <div className="flex gap-3 justify-center">
           <button
             onClick={restart}
-            className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+            className="font-display bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-semibold btn-glow active:scale-95 transition-all"
           >
             Try Again
           </button>
           <Link
             to="/"
-            className="border-2 border-ua-blue text-ua-blue px-6 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+            className="font-display border-2 border-ua-blue text-ua-blue px-8 py-3 rounded-full text-lg font-semibold hover:bg-ua-blue-light active:scale-95 transition-all"
           >
             Home
           </Link>
@@ -118,10 +122,10 @@ export default function TypingPractice() {
   return (
     <div className="page-enter max-w-lg mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-ua-blue">Typing Practice</h1>
+        <h1 className="text-2xl font-display font-bold text-ua-blue">Typing Practice</h1>
         <button
           onClick={() => setShowKeyboard(!showKeyboard)}
-          className="text-xs px-3 py-1 rounded-full bg-gray-200 text-gray-600"
+          className="text-sm px-4 py-2 rounded-full bg-gray-200 text-gray-600 font-medium active:scale-95 transition-all"
         >
           {showKeyboard ? "Hide" : "Show"} Keyboard
         </button>

@@ -30,12 +30,12 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-ua-blue sticky top-0 z-50 shadow-lg">
+    <nav className="bg-ua-blue sticky top-0 z-50 shadow-lg border-b-3 border-ua-yellow">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-14">
           <NavLink
             to="/"
-            className="text-ua-yellow font-bold text-xl tracking-tight"
+            className="text-ua-yellow font-display font-bold text-2xl tracking-tight"
           >
             UKY
           </NavLink>

@@ -6,16 +6,19 @@
   --color-ua-blue-light: #E8F0FE;
   --color-ua-blue-dark: #003D7A;
   --color-ua-yellow-light: #FFF8DC;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --color-ua-yellow-dark: #E6BF00;
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
 }
 
-/* Card flip animation */
+/* ===== Card Flip ===== */
+
 .flip-card {
   perspective: 1000px;
 }
 
 .flip-card-inner {
-  transition: transform 0.5s;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d;
 }
 
@@ -32,34 +35,198 @@
   transform: rotateY(180deg);
 }
 
-/* Smooth page transitions */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+/* ===== Page Transitions ===== */
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .page-enter {
-  animation: fadeIn 0.3s ease-out;
+  animation: pageEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Pop animation for correct answers */
+/* ===== Feedback Animations ===== */
+
 @keyframes pop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.15); }
   100% { transform: scale(1); }
 }
 
 .animate-pop {
-  animation: pop 0.3s ease-out;
+  animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Shake animation for wrong answers */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
 }
 
 .animate-shake {
-  animation: shake 0.3s ease-out;
+  animation: shake 0.4s ease-out;
+}
+
+/* ===== Bouncy Entrance ===== */
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: translateY(24px) scale(0.92); }
+  60% { opacity: 1; transform: translateY(-5px) scale(1.03); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Staggered entrance — set --i on each element */
+.stagger-item {
+  animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(min(var(--i, 0), 15) * 60ms);
+}
+
+/* ===== Score & Celebration ===== */
+
+@keyframes scorePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.animate-score-pop {
+  animation: scorePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.15s;
+}
+
+@keyframes celebratePulse {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-celebrate {
+  animation: celebratePulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ===== Glow Pulse (streaks, review callout) ===== */
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 213, 0, 0); }
+  50% { box-shadow: 0 0 24px 6px rgba(255, 213, 0, 0.35); }
+}
+
+.animate-glow {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+/* ===== Slide In ===== */
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* ===== Confetti ===== */
+
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.confetti-piece {
+  position: absolute;
+  animation: confettiFall 3s ease-in forwards;
+}
+
+/* ===== Gradient Text ===== */
+
+.text-gradient {
+  background: linear-gradient(135deg, #005BBB 0%, #0077EA 40%, #FFD500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Gradient Bars ===== */
+
+.bg-gradient-bar {
+  background: linear-gradient(90deg, #005BBB 0%, #0077EA 50%, #FFD500 100%);
+}
+
+/* ===== Button Glow Effects ===== */
+
+.btn-glow {
+  transition: all 0.25s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 6px 20px rgba(0, 91, 187, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-glow:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 91, 187, 0.2);
+}
+
+.btn-glow-yellow {
+  transition: all 0.25s ease;
+}
+
+.btn-glow-yellow:hover {
+  box-shadow: 0 6px 20px rgba(255, 213, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-glow-yellow:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 8px rgba(255, 213, 0, 0.25);
+}
+
+/* ===== Card Colored Shadows ===== */
+
+.card-shadow-blue {
+  box-shadow: 0 4px 14px rgba(0, 91, 187, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-blue:hover {
+  box-shadow: 0 10px 30px rgba(0, 91, 187, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-yellow {
+  box-shadow: 0 4px 14px rgba(255, 213, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-yellow:hover {
+  box-shadow: 0 10px 30px rgba(255, 213, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Playful Background ===== */
+
+.bg-playful {
+  background-color: #f0f6ff;
+  background-image:
+    radial-gradient(ellipse at 15% 30%, rgba(0, 91, 187, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 15%, rgba(255, 213, 0, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 85%, rgba(0, 91, 187, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 60%, rgba(255, 213, 0, 0.03) 0%, transparent 40%);
 }

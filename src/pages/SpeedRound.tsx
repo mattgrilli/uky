@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { lessons, getVocabAudioPath, type VocabWord } from "../data/lessons";
 import { shuffle } from "../data/alphabet";
 import { recordWordResult } from "../lib/progress";
+import Confetti from "../components/Confetti";
 
 const ROUND_SECONDS = 60;
 
@@ -103,7 +104,7 @@ export default function SpeedRound() {
   if (!started) {
     return (
       <div className="page-enter text-center py-12 max-w-md mx-auto">
-        <h1 className="text-4xl font-bold text-ua-blue mb-4">Speed Round</h1>
+        <h1 className="text-4xl font-display font-bold text-ua-blue mb-4">Speed Round</h1>
         <div className="text-8xl mb-6">⚡</div>
         <p className="text-gray-500 mb-2">
           You have <strong>60 seconds</strong> to answer as many as you can.
@@ -123,10 +124,13 @@ export default function SpeedRound() {
 
   if (finished) {
     const pct = total > 0 ? Math.round((score / total) * 100) : 0;
+    const isHighScore = score >= 20;
     return (
       <div className="page-enter text-center py-12 max-w-md mx-auto">
-        <h1 className="text-4xl font-bold text-ua-blue mb-2">Time's Up!</h1>
-        <p className="text-6xl font-bold text-ua-yellow my-6">{score}</p>
+        {isHighScore && <Confetti />}
+        <h1 className="text-4xl font-display font-bold text-ua-blue mb-2 animate-celebrate">⚡ Time's Up!</h1>
+        <p className="text-7xl font-display font-bold text-gradient my-6 animate-score-pop">{score}</p>
+        {isHighScore && <p className="text-2xl mb-2 animate-bounce-in">🏆✨🌟</p>}
         <p className="text-gray-500 mb-1">
           {score}/{total} correct ({pct}%)
         </p>
@@ -139,13 +143,13 @@ export default function SpeedRound() {
         <div className="flex gap-3 justify-center flex-wrap">
           <button
             onClick={startGame}
-            className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+            className="font-display bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-semibold btn-glow active:scale-95 transition-all"
           >
             Play Again
           </button>
           <Link
             to="/"
-            className="border-2 border-ua-blue text-ua-blue px-6 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+            className="font-display border-2 border-ua-blue text-ua-blue px-8 py-3 rounded-full text-lg font-semibold hover:bg-ua-blue-light active:scale-95 transition-all"
           >
             Home
           </Link>
@@ -158,7 +162,7 @@ export default function SpeedRound() {
     <div className="page-enter max-w-lg mx-auto">
       {/* Header with timer */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-ua-blue">Speed Round</h1>
+        <h1 className="text-2xl font-display font-bold text-ua-blue">Speed Round</h1>
         <div className={`text-2xl font-bold font-mono ${timeLeft <= 10 ? "text-red-500 animate-pulse" : "text-gray-700"}`}>
           {timeLeft}s
         </div>
@@ -167,7 +171,7 @@ export default function SpeedRound() {
       {/* Timer bar */}
       <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
         <div
-          className={`h-2 rounded-full transition-all duration-1000 ${timeLeft <= 10 ? "bg-red-500" : "bg-ua-blue"}`}
+          className={`h-2 rounded-full transition-all duration-1000 ${timeLeft <= 10 ? "bg-red-500" : "bg-gradient-bar"}`}
           style={{ width: `${(timeLeft / ROUND_SECONDS) * 100}%` }}
         />
       </div>
@@ -177,16 +181,16 @@ export default function SpeedRound() {
         <span className="text-gray-500">
           Score: <strong className="text-ua-blue">{score}</strong>
         </span>
-        <span className="text-gray-500">
-          Streak: <strong className={streak >= 5 ? "text-orange-500" : "text-gray-700"}>{streak}</strong>
-          {streak >= 5 && " 🔥"}
+        <span className="text-gray-500 font-display">
+          Streak: <strong className={`${streak >= 10 ? "text-orange-500 animate-glow" : streak >= 5 ? "text-orange-500" : "text-gray-700"}`}>{streak}</strong>
+          {streak >= 10 ? " 🔥🔥" : streak >= 5 ? " 🔥" : ""}
         </span>
       </div>
 
       {/* Question card */}
       <div
         className={`bg-white rounded-xl shadow-lg p-6 mb-6 text-center transition-colors ${
-          flash === "correct" ? "ring-4 ring-green-400" : flash === "wrong" ? "ring-4 ring-red-400" : ""
+          flash === "correct" ? "ring-4 ring-green-400 shadow-lg shadow-green-200" : flash === "wrong" ? "ring-4 ring-red-400 shadow-lg shadow-red-200" : ""
         }`}
       >
         <p className="text-4xl font-bold text-gray-800 mb-2">{question.word.uk}</p>
@@ -194,7 +198,7 @@ export default function SpeedRound() {
         <button
           type="button"
           onClick={playAudio}
-          className="mt-2 text-sm text-ua-blue hover:underline inline-flex items-center gap-1"
+          className="mt-2 text-sm text-ua-blue bg-ua-blue-light px-4 py-2 rounded-full inline-flex items-center gap-1 active:scale-95 transition-all"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />

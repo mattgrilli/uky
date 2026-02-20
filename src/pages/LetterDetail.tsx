@@ -19,7 +19,7 @@ export default function LetterDetail() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500 text-lg">Letter not found.</p>
-        <Link to="/alphabet" className="text-ua-blue underline mt-4 inline-block">
+        <Link to="/alphabet" className="text-ua-blue bg-ua-blue-light px-6 py-3 rounded-full mt-4 inline-block font-medium active:scale-95 transition-all">
           Back to Alphabet
         </Link>
       </div>
@@ -36,7 +36,7 @@ export default function LetterDetail() {
       <div className="flex items-center justify-between mb-6">
         <Link
           to="/alphabet"
-          className="text-ua-blue hover:underline text-sm"
+          className="text-sm text-ua-blue bg-gray-100 px-4 py-2 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all"
         >
           &larr; All Letters
         </Link>

@@ -6,7 +6,7 @@ import ProgressBar from "../components/ProgressBar";
 import { useEffect } from "react";
 
 const cardBase =
-  "bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 active:scale-95 select-none";
+  "bg-white rounded-2xl card-shadow-blue p-6 transition-all duration-300 hover:-translate-y-1.5 active:scale-95 select-none border border-gray-100";
 
 export default function Home() {
   const { progress, overallPercent, updateStreak } = useProgress();
@@ -24,12 +24,24 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* Hero */}
-      <div className="text-center py-12">
-        <h1 className="text-6xl font-bold text-ua-blue">UKY</h1>
-        <p className="text-xl text-gray-600 mt-3">
+      <div className="text-center py-16 mb-4">
+        <div className="text-7xl sm:text-8xl font-display font-bold text-gradient animate-bounce-in">
+          UKY
+        </div>
+        <p
+          className="text-xl sm:text-2xl text-gray-600 mt-4 font-display font-medium animate-bounce-in"
+          style={{ animationDelay: "100ms" }}
+        >
           Learn Ukrainian, letter by letter.
         </p>
-        <div className="w-16 h-1 bg-ua-yellow mx-auto mt-4 rounded-full" />
+        <div
+          className="flex items-center justify-center gap-2 mt-6 animate-bounce-in"
+          style={{ animationDelay: "200ms" }}
+        >
+          <div className="w-12 h-1.5 bg-ua-blue rounded-full" />
+          <div className="w-4 h-4 bg-ua-yellow rounded-full" />
+          <div className="w-12 h-1.5 bg-ua-yellow rounded-full" />
+        </div>
       </div>
 
       {/* Quick actions */}
@@ -37,14 +49,14 @@ export default function Home() {
         {wordsToReview.length > 0 && (
           <Link
             to="/review"
-            className="bg-yellow-400 text-yellow-900 px-6 py-3 rounded-full font-medium hover:bg-yellow-500 active:scale-95 transition-all text-base"
+            className="bg-yellow-400 text-yellow-900 px-6 py-3 rounded-full font-display font-medium btn-glow-yellow active:scale-95 text-base"
           >
             Review {wordsToReview.length} word{wordsToReview.length !== 1 ? "s" : ""}
           </Link>
         )}
         <Link
           to="/dashboard"
-          className="bg-white text-ua-blue px-6 py-3 rounded-full font-medium border-2 border-ua-blue hover:bg-ua-blue-light active:scale-95 transition-all text-base"
+          className="bg-white text-ua-blue px-6 py-3 rounded-full font-display font-medium border-2 border-ua-blue btn-glow active:scale-95 text-base"
         >
           Progress Dashboard
         </Link>
@@ -52,8 +64,8 @@ export default function Home() {
 
       {/* Progress overview */}
       {progress.learnedLetters.length > 0 && (
-        <div className="max-w-md mx-auto mb-10 bg-white rounded-2xl shadow p-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-3">
+        <div className="max-w-md mx-auto mb-10 bg-white rounded-2xl card-shadow-blue p-6 border border-gray-100">
+          <h2 className="text-lg font-display font-semibold text-gray-700 mb-3">
             Your Progress
           </h2>
           <ProgressBar
@@ -70,25 +82,26 @@ export default function Home() {
       {/* Class Units */}
       {classUnits.map((unit) => (
         <div key={unit}>
-          <h2 className="text-xl font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+          <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
             Class Unit {unit}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
             {classLessons
               .filter((l) => l.classUnit === unit)
-              .map((lesson) => (
+              .map((lesson, i) => (
                 <Link
                   key={lesson.id}
                   to={`/lessons/${lesson.id}`}
-                  className={`${cardBase} border-t-4 border-green-500`}
+                  className={`${cardBase} border-t-4 border-green-500 stagger-item`}
+                  style={{ "--i": i } as React.CSSProperties}
                 >
                   <div className="flex items-start justify-between">
                     <div className="text-4xl mb-3">{lesson.icon}</div>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold">
                       Unit {lesson.classUnit}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-800">{lesson.title}</h3>
+                  <h3 className="text-lg font-display font-bold text-gray-800">{lesson.title}</h3>
                   <p className="text-gray-500 text-sm mt-1">{lesson.description}</p>
                   <p className="text-xs text-gray-400 mt-2">
                     {lesson.words.length} words
@@ -100,31 +113,33 @@ export default function Home() {
       ))}
 
       {/* Lessons */}
-      <h2 className="text-xl font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+      <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
         Lessons
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
         <Link
           to="/alphabet"
-          className={`${cardBase} border-t-4 border-ua-blue`}
+          className={`${cardBase} border-t-4 border-ua-blue stagger-item`}
+          style={{ "--i": 0 } as React.CSSProperties}
         >
           <div className="text-4xl mb-3">
             <span role="img" aria-label="Ukrainian letters" aria-hidden>&#1040;&#1041;&#1042;</span>
           </div>
-          <h3 className="text-lg font-bold text-gray-800">The Alphabet</h3>
+          <h3 className="text-lg font-display font-bold text-gray-800">The Alphabet</h3>
           <p className="text-gray-500 text-sm mt-1">
             Master all 33 letters with pronunciation guides and audio.
           </p>
         </Link>
 
-        {generalLessons.map((lesson) => (
+        {generalLessons.map((lesson, i) => (
           <Link
             key={lesson.id}
             to={`/lessons/${lesson.id}`}
-            className={`${cardBase} border-t-4 border-ua-yellow`}
+            className={`${cardBase} border-t-4 border-ua-yellow stagger-item`}
+            style={{ "--i": i + 1 } as React.CSSProperties}
           >
             <div className="text-4xl mb-3">{lesson.icon}</div>
-            <h3 className="text-lg font-bold text-gray-800">{lesson.title}</h3>
+            <h3 className="text-lg font-display font-bold text-gray-800">{lesson.title}</h3>
             <p className="text-gray-500 text-sm mt-1">{lesson.description}</p>
             <p className="text-xs text-gray-400 mt-2">
               {lesson.words.length} words
@@ -134,60 +149,38 @@ export default function Home() {
       </div>
 
       {/* Games */}
-      <h2 className="text-xl font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+      <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
         Games
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
-        <Link to="/games/quiz" className={`${cardBase} border-t-4 border-ua-yellow`}>
-          <h3 className="text-lg font-bold text-gray-800">Alphabet Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">Multiple choice letter quiz.</p>
-        </Link>
-
-        <Link to="/games/matching" className={`${cardBase} border-t-4 border-green-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Letter Matching</h3>
-          <p className="text-gray-500 text-sm mt-1">Match letters to transliterations.</p>
-        </Link>
-
-        <Link to="/games/typing" className={`${cardBase} border-t-4 border-purple-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Typing Practice</h3>
-          <p className="text-gray-500 text-sm mt-1">Type Ukrainian letters.</p>
-        </Link>
-
-        <Link to="/games/listening" className={`${cardBase} border-t-4 border-orange-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Listening Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">Hear audio, pick the correct translation.</p>
-        </Link>
-
-        <Link to="/games/speed" className={`${cardBase} border-t-4 border-red-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Speed Round</h3>
-          <p className="text-gray-500 text-sm mt-1">60 seconds — how many can you get?</p>
-        </Link>
-
-        <Link to="/games/reverse" className={`${cardBase} border-t-4 border-teal-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Reverse Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">English to Ukrainian — test your recall.</p>
-        </Link>
-
-        <Link to="/games/spelling" className={`${cardBase} border-t-4 border-pink-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Spell It</h3>
-          <p className="text-gray-500 text-sm mt-1">Type the Ukrainian word from English.</p>
-        </Link>
-
-        <Link to="/games/sentences" className={`${cardBase} border-t-4 border-cyan-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Sentence Builder</h3>
-          <p className="text-gray-500 text-sm mt-1">Arrange words to form Ukrainian sentences.</p>
-        </Link>
-
-        <Link to="/conjugation" className={`${cardBase} border-t-4 border-violet-500`}>
-          <h3 className="text-lg font-bold text-gray-800">Verb Conjugation</h3>
-          <p className="text-gray-500 text-sm mt-1">Present tense tables for 20 common verbs.</p>
-        </Link>
+        {([
+          { to: "/games/quiz", emoji: "\uD83C\uDFAF", title: "Alphabet Quiz", desc: "Multiple choice letter quiz.", color: "border-ua-yellow" },
+          { to: "/games/matching", emoji: "\uD83D\uDD17", title: "Letter Matching", desc: "Match letters to transliterations.", color: "border-green-500" },
+          { to: "/games/typing", emoji: "\u2328\uFE0F", title: "Typing Practice", desc: "Type Ukrainian letters.", color: "border-purple-500" },
+          { to: "/games/listening", emoji: "\uD83D\uDC42", title: "Listening Quiz", desc: "Hear audio, pick the correct translation.", color: "border-orange-500" },
+          { to: "/games/speed", emoji: "\u26A1", title: "Speed Round", desc: "60 seconds \u2014 how many can you get?", color: "border-red-500" },
+          { to: "/games/reverse", emoji: "\uD83D\uDD04", title: "Reverse Quiz", desc: "English to Ukrainian \u2014 test your recall.", color: "border-teal-500" },
+          { to: "/games/spelling", emoji: "\uD83D\uDCDD", title: "Spell It", desc: "Type the Ukrainian word from English.", color: "border-pink-500" },
+          { to: "/games/sentences", emoji: "\uD83E\uDDE9", title: "Sentence Builder", desc: "Arrange words to form Ukrainian sentences.", color: "border-cyan-500" },
+          { to: "/conjugation", emoji: "\uD83D\uDCD6", title: "Verb Conjugation", desc: "Present tense tables for 20 common verbs.", color: "border-violet-500" },
+        ]).map((game, i) => (
+          <Link
+            key={game.to}
+            to={game.to}
+            className={`${cardBase} border-t-4 ${game.color} stagger-item`}
+            style={{ "--i": i } as React.CSSProperties}
+          >
+            <div className="text-3xl mb-2">{game.emoji}</div>
+            <h3 className="text-lg font-display font-bold text-gray-800">{game.title}</h3>
+            <p className="text-gray-500 text-sm mt-1">{game.desc}</p>
+          </Link>
+        ))}
       </div>
 
       {/* Game stats */}
       {progress.games.quiz.totalAttempts > 0 && (
         <div className="max-w-4xl mx-auto mt-2 mb-10">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+          <h2 className="text-lg font-display font-semibold text-gray-700 mb-4 text-center">
             Game Stats
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -201,10 +194,10 @@ export default function Home() {
               stats.totalAttempts > 0 ? (
                 <div
                   key={name}
-                  className="bg-white rounded-xl shadow p-4 text-center"
+                  className="bg-white rounded-xl card-shadow-blue p-4 text-center border border-gray-100"
                 >
-                  <p className="text-sm text-gray-500">{name}</p>
-                  <p className="text-2xl font-bold text-ua-blue">
+                  <p className="text-sm text-gray-500 font-display">{name}</p>
+                  <p className="text-3xl font-display font-bold text-ua-blue">
                     {stats.bestScore}
                   </p>
                   <p className="text-xs text-gray-400">
