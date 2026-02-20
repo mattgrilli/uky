@@ -265,7 +265,7 @@ export const lessons: Lesson[] = [
     titleUk: "Пори року та погода",
     description: "Seasons, weather, and temperature — essential for daily conversation.",
     icon: "🌦️",
-    classUnit: 2,
+    classUnit: 1,
     words: [
       { audioIndex: 1, uk: "Пора року", en: "Season", translit: "Pora roku" },
       { audioIndex: 2, uk: "Весна", en: "Spring", translit: "Vesna" },
@@ -295,7 +295,7 @@ export const lessons: Lesson[] = [
     titleUk: "Одяг",
     description: "What to wear — from winter layers to summer swimwear.",
     icon: "👕",
-    classUnit: 2,
+    classUnit: 1,
     words: [
       { audioIndex: 1, uk: "Одяг", en: "Clothing", translit: "Odyah" },
       { audioIndex: 2, uk: "Сорочка", en: "Shirt", translit: "Sorochka" },
@@ -325,7 +325,7 @@ export const lessons: Lesson[] = [
     titleUk: "Природа",
     description: "Trees, flowers, animals, and the outdoors.",
     icon: "🌳",
-    classUnit: 2,
+    classUnit: 1,
     words: [
       { audioIndex: 1, uk: "Дерева", en: "Trees", translit: "Dereva" },
       { audioIndex: 2, uk: "Квіти", en: "Flowers", translit: "Kvity" },
@@ -355,7 +355,7 @@ export const lessons: Lesson[] = [
     titleUk: "Українська кухня",
     description: "Traditional Ukrainian dishes and ingredients — from вареники to борщ.",
     icon: "🥟",
-    classUnit: 3,
+    classUnit: 2,
     words: [
       { audioIndex: 1, uk: "Смачного!", en: "Bon appetit! / Enjoy!", translit: "Smachnoho!", note: "Said before a meal — like French 'bon appétit'" },
       { audioIndex: 2, uk: "Вареники", en: "Varenyky (dumplings)", translit: "Varenyky", note: "Filled with potato, cheese, cherry, or meat" },
@@ -385,7 +385,7 @@ export const lessons: Lesson[] = [
     titleUk: "Солодощі та фрукти",
     description: "Desserts, candy, and fruits — satisfy your sweet tooth in Ukrainian.",
     icon: "🍓",
-    classUnit: 3,
+    classUnit: 2,
     words: [
       { audioIndex: 1, uk: "Торт", en: "Cake", translit: "Tort" },
       { audioIndex: 2, uk: "Печиво", en: "Cookies", translit: "Pechyvo" },

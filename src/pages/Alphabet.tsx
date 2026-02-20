@@ -43,7 +43,7 @@ function LetterGroup({
         </svg>
       </button>
       {expanded && (
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4">
           {letters.map((letter) => (
             <LetterCard
               key={letter.index}

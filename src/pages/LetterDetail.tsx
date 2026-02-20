@@ -58,21 +58,21 @@ export default function LetterDetail() {
         <button
           onClick={() => say(letter.lower)}
           disabled={speaking}
-          className="bg-ua-blue text-white px-5 py-2 rounded-full hover:bg-ua-blue-dark transition-colors disabled:opacity-50"
+          className="bg-ua-blue text-white px-6 py-3 rounded-full hover:bg-ua-blue-dark active:scale-95 transition-all disabled:opacity-50 text-base"
         >
           {speaking ? "Playing..." : `Listen "${letter.upper}"`}
         </button>
         <button
           onClick={() => say(letter.exampleWord)}
           disabled={speaking}
-          className="bg-white text-ua-blue border-2 border-ua-blue px-5 py-2 rounded-full hover:bg-ua-blue-light transition-colors disabled:opacity-50"
+          className="bg-white text-ua-blue border-2 border-ua-blue px-6 py-3 rounded-full hover:bg-ua-blue-light active:scale-95 transition-all disabled:opacity-50 text-base"
         >
           {`Hear "${letter.exampleWord}"`}
         </button>
         <button
           onClick={() => markLetterLearned(letter.index)}
           disabled={isLearned}
-          className={`px-5 py-2 rounded-full font-medium transition-colors ${
+          className={`px-6 py-3 rounded-full font-medium transition-all active:scale-95 text-base ${
             isLearned
               ? "bg-green-100 text-green-700 cursor-default"
               : "bg-ua-yellow text-ua-blue-dark hover:bg-yellow-300 cursor-pointer"
@@ -83,19 +83,20 @@ export default function LetterDetail() {
       </div>
 
       {/* Prev / Next */}
-      <div className="flex justify-between mt-10">
+      <div className="flex justify-between mt-10 gap-4">
         {prevIndex ? (
           <button
             onClick={() => {
               setFlipped(false);
               navigate(`/alphabet/${prevIndex}`);
             }}
-            className="text-ua-blue hover:underline"
+            className="flex-1 py-3 px-5 rounded-xl border-2 border-ua-blue text-ua-blue font-medium
+              hover:bg-ua-blue-light active:scale-95 transition-all text-lg"
           >
             &larr; {getLetterByIndex(prevIndex)?.upper}
           </button>
         ) : (
-          <span />
+          <span className="flex-1" />
         )}
         {nextIndex ? (
           <button
@@ -103,12 +104,13 @@ export default function LetterDetail() {
               setFlipped(false);
               navigate(`/alphabet/${nextIndex}`);
             }}
-            className="text-ua-blue hover:underline"
+            className="flex-1 py-3 px-5 rounded-xl bg-ua-blue text-white font-medium
+              hover:bg-ua-blue-dark active:scale-95 transition-all text-lg"
           >
             {getLetterByIndex(nextIndex)?.upper} &rarr;
           </button>
         ) : (
-          <span />
+          <span className="flex-1" />
         )}
       </div>
     </div>

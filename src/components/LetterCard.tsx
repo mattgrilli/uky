@@ -33,23 +33,23 @@ export default function LetterCard({
     return (
       <button
         onClick={onClick}
-        className={`flip-card w-full aspect-square rounded-xl border-2 ${categoryColors[letter.category]}
-          shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer`}
+        className={`flip-card w-full aspect-square min-h-18 rounded-xl border-2 ${categoryColors[letter.category]}
+          shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer select-none`}
       >
         <div className={`flip-card-inner w-full h-full relative ${flipped ? "flipped" : ""}`}>
           {/* Front */}
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-2">
-            <span className="text-3xl sm:text-4xl font-bold text-gray-800">
+            <span className="text-4xl sm:text-5xl font-bold text-gray-800">
               {letter.upper}
             </span>
-            <span className="text-xs text-gray-500 mt-1">{letter.name}</span>
+            <span className="text-sm text-gray-500 mt-1">{letter.name}</span>
           </div>
           {/* Back */}
           <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center p-2 bg-ua-blue rounded-xl">
-            <span className="text-lg font-bold text-white">
+            <span className="text-xl font-bold text-white">
               {letter.transliteration}
             </span>
-            <span className="text-xs text-white/70">{letter.ipa}</span>
+            <span className="text-sm text-white/70">{letter.ipa}</span>
           </div>
         </div>
       </button>
@@ -62,7 +62,7 @@ export default function LetterCard({
         className={`flip-card rounded-2xl border-2 ${categoryColors[letter.category]} shadow-lg ${flipped ? "flipped" : ""}`}
         onClick={onClick}
       >
-        <div className="flip-card-inner min-h-[320px] relative">
+        <div className="flip-card-inner min-h-80 relative">
           {/* Front */}
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-8">
             <span

@@ -42,7 +42,8 @@ function WordCard({
           ) : (
             <button
               onClick={() => setRevealed(true)}
-              className="mt-3 text-ua-blue hover:underline text-sm"
+              className="mt-3 bg-gray-100 text-ua-blue px-4 py-2 rounded-lg text-sm font-medium
+                hover:bg-ua-blue-light active:scale-95 transition-all"
             >
               Show translation
             </button>
@@ -101,13 +102,13 @@ export default function Lesson() {
         <div className="flex gap-2">
           <button
             onClick={() => setViewMode("cards")}
-            className={`text-xs px-3 py-1 rounded-full ${viewMode === "cards" ? "bg-ua-blue text-white" : "bg-gray-200 text-gray-600"}`}
+            className={`text-sm px-4 py-2 rounded-full font-medium transition-all active:scale-95 ${viewMode === "cards" ? "bg-ua-blue text-white" : "bg-gray-200 text-gray-600"}`}
           >
             Cards
           </button>
           <button
             onClick={() => setViewMode("list")}
-            className={`text-xs px-3 py-1 rounded-full ${viewMode === "list" ? "bg-ua-blue text-white" : "bg-gray-200 text-gray-600"}`}
+            className={`text-sm px-4 py-2 rounded-full font-medium transition-all active:scale-95 ${viewMode === "list" ? "bg-ua-blue text-white" : "bg-gray-200 text-gray-600"}`}
           >
             List
           </button>
@@ -136,11 +137,13 @@ export default function Lesson() {
             />
           </div>
 
-          <div className="flex justify-between mt-6">
+          <div className="flex justify-between mt-6 gap-4">
             <button
               onClick={() => setCardIndex((i) => Math.max(0, i - 1))}
               disabled={cardIndex === 0}
-              className="text-ua-blue hover:underline disabled:text-gray-300 disabled:no-underline"
+              className="flex-1 py-3 px-5 rounded-xl border-2 border-ua-blue text-ua-blue font-medium
+                hover:bg-ua-blue-light active:scale-95 transition-all text-base
+                disabled:border-gray-200 disabled:text-gray-300 disabled:hover:bg-white disabled:active:scale-100"
             >
               &larr; Previous
             </button>
@@ -149,7 +152,9 @@ export default function Lesson() {
                 setCardIndex((i) => Math.min(lesson.words.length - 1, i + 1))
               }
               disabled={cardIndex === lesson.words.length - 1}
-              className="text-ua-blue hover:underline disabled:text-gray-300 disabled:no-underline"
+              className="flex-1 py-3 px-5 rounded-xl bg-ua-blue text-white font-medium
+                hover:bg-ua-blue-dark active:scale-95 transition-all text-base
+                disabled:bg-gray-200 disabled:text-gray-300 disabled:hover:bg-gray-200 disabled:active:scale-100"
             >
               Next &rarr;
             </button>
