@@ -143,13 +143,13 @@ export default function VocabMatch() {
         <div className="flex gap-3 justify-center mt-8 flex-wrap">
           <button
             onClick={restart}
-            className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+            className="bg-ua-blue text-white px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-dark active:scale-95 transition-all"
           >
             Play Again
           </button>
           <Link
             to={`/lessons/${lesson.id}`}
-            className="border-2 border-ua-blue text-ua-blue px-6 py-2 rounded-full hover:bg-ua-blue-light transition-colors"
+            className="border-2 border-ua-blue text-ua-blue px-6 py-3 rounded-full text-base font-medium hover:bg-ua-blue-light active:scale-95 transition-all"
           >
             Back to Lesson
           </Link>
@@ -181,13 +181,13 @@ export default function VocabMatch() {
           </p>
           <button
             onClick={nextRound}
-            className="bg-ua-blue text-white px-6 py-2 rounded-full hover:bg-ua-blue-dark transition-colors"
+            className="bg-ua-blue text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-ua-blue-dark active:scale-95 transition-all"
           >
             {round >= totalRounds ? "See Results" : "Next Round"}
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 mt-6">
           {/* Left column - Ukrainian */}
           <div className="flex flex-col gap-3">
             <p className="text-sm font-medium text-gray-500 text-center mb-1">
@@ -203,13 +203,13 @@ export default function VocabMatch() {
                   key={word.uk}
                   onClick={() => handleLeftClick(i)}
                   disabled={isMatched}
-                  className={`px-3 py-3 rounded-xl text-lg font-bold text-center transition-all ${
+                  className={`px-3 py-4 rounded-xl text-lg font-bold text-center transition-all active:scale-95 select-none ${
                     isMatched
                       ? "bg-green-100 text-green-600 border-2 border-green-300"
                       : isWrong
                         ? "bg-red-100 text-red-600 border-2 border-red-400 animate-shake"
                         : isSelected
-                          ? "bg-ua-blue-light text-ua-blue border-2 border-ua-blue"
+                          ? "bg-ua-blue-light text-ua-blue border-2 border-ua-blue shadow-md"
                           : "bg-white border-2 border-gray-200 hover:border-ua-blue cursor-pointer"
                   }`}
                 >
@@ -233,7 +233,7 @@ export default function VocabMatch() {
                   key={`r-${word.uk}`}
                   onClick={() => handleRightClick(i)}
                   disabled={matched}
-                  className={`px-3 py-3 rounded-xl text-sm font-medium text-center transition-all ${
+                  className={`px-3 py-4 rounded-xl text-base font-medium text-center transition-all active:scale-95 select-none ${
                     matched
                       ? "bg-green-100 text-green-600 border-2 border-green-300"
                       : isWrong

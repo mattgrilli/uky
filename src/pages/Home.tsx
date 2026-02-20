@@ -5,6 +5,9 @@ import { getWordsToReview } from "../lib/progress";
 import ProgressBar from "../components/ProgressBar";
 import { useEffect } from "react";
 
+const cardBase =
+  "bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 active:scale-95 select-none";
+
 export default function Home() {
   const { progress, overallPercent, updateStreak } = useProgress();
   const wordsToReview = getWordsToReview();
@@ -34,14 +37,14 @@ export default function Home() {
         {wordsToReview.length > 0 && (
           <Link
             to="/review"
-            className="bg-yellow-400 text-yellow-900 px-5 py-2 rounded-full font-medium hover:bg-yellow-500 transition-colors"
+            className="bg-yellow-400 text-yellow-900 px-6 py-3 rounded-full font-medium hover:bg-yellow-500 active:scale-95 transition-all text-base"
           >
             Review {wordsToReview.length} word{wordsToReview.length !== 1 ? "s" : ""}
           </Link>
         )}
         <Link
           to="/dashboard"
-          className="bg-white text-ua-blue px-5 py-2 rounded-full font-medium border-2 border-ua-blue hover:bg-ua-blue-light transition-colors"
+          className="bg-white text-ua-blue px-6 py-3 rounded-full font-medium border-2 border-ua-blue hover:bg-ua-blue-light active:scale-95 transition-all text-base"
         >
           Progress Dashboard
         </Link>
@@ -77,7 +80,7 @@ export default function Home() {
                 <Link
                   key={lesson.id}
                   to={`/lessons/${lesson.id}`}
-                  className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-green-500"
+                  className={`${cardBase} border-t-4 border-green-500`}
                 >
                   <div className="flex items-start justify-between">
                     <div className="text-4xl mb-3">{lesson.icon}</div>
@@ -103,7 +106,7 @@ export default function Home() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
         <Link
           to="/alphabet"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-ua-blue"
+          className={`${cardBase} border-t-4 border-ua-blue`}
         >
           <div className="text-4xl mb-3">
             <span role="img" aria-label="Ukrainian letters" aria-hidden>&#1040;&#1041;&#1042;</span>
@@ -118,7 +121,7 @@ export default function Home() {
           <Link
             key={lesson.id}
             to={`/lessons/${lesson.id}`}
-            className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-ua-yellow"
+            className={`${cardBase} border-t-4 border-ua-yellow`}
           >
             <div className="text-4xl mb-3">{lesson.icon}</div>
             <h3 className="text-lg font-bold text-gray-800">{lesson.title}</h3>
@@ -135,94 +138,49 @@ export default function Home() {
         Games
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
-        <Link
-          to="/games/quiz"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-ua-yellow"
-        >
+        <Link to="/games/quiz" className={`${cardBase} border-t-4 border-ua-yellow`}>
           <h3 className="text-lg font-bold text-gray-800">Alphabet Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Multiple choice letter quiz.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Multiple choice letter quiz.</p>
         </Link>
 
-        <Link
-          to="/games/matching"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-green-500"
-        >
+        <Link to="/games/matching" className={`${cardBase} border-t-4 border-green-500`}>
           <h3 className="text-lg font-bold text-gray-800">Letter Matching</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Match letters to transliterations.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Match letters to transliterations.</p>
         </Link>
 
-        <Link
-          to="/games/typing"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-purple-500"
-        >
+        <Link to="/games/typing" className={`${cardBase} border-t-4 border-purple-500`}>
           <h3 className="text-lg font-bold text-gray-800">Typing Practice</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Type Ukrainian letters.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Type Ukrainian letters.</p>
         </Link>
 
-        <Link
-          to="/games/listening"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-orange-500"
-        >
+        <Link to="/games/listening" className={`${cardBase} border-t-4 border-orange-500`}>
           <h3 className="text-lg font-bold text-gray-800">Listening Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Hear audio, pick the correct translation.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Hear audio, pick the correct translation.</p>
         </Link>
 
-        <Link
-          to="/games/speed"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-red-500"
-        >
+        <Link to="/games/speed" className={`${cardBase} border-t-4 border-red-500`}>
           <h3 className="text-lg font-bold text-gray-800">Speed Round</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            60 seconds — how many can you get?
-          </p>
+          <p className="text-gray-500 text-sm mt-1">60 seconds — how many can you get?</p>
         </Link>
 
-        <Link
-          to="/games/reverse"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-teal-500"
-        >
+        <Link to="/games/reverse" className={`${cardBase} border-t-4 border-teal-500`}>
           <h3 className="text-lg font-bold text-gray-800">Reverse Quiz</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            English to Ukrainian — test your recall.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">English to Ukrainian — test your recall.</p>
         </Link>
 
-        <Link
-          to="/games/spelling"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-pink-500"
-        >
+        <Link to="/games/spelling" className={`${cardBase} border-t-4 border-pink-500`}>
           <h3 className="text-lg font-bold text-gray-800">Spell It</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Type the Ukrainian word from English.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Type the Ukrainian word from English.</p>
         </Link>
 
-        <Link
-          to="/games/sentences"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-cyan-500"
-        >
+        <Link to="/games/sentences" className={`${cardBase} border-t-4 border-cyan-500`}>
           <h3 className="text-lg font-bold text-gray-800">Sentence Builder</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Arrange words to form Ukrainian sentences.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Arrange words to form Ukrainian sentences.</p>
         </Link>
 
-        <Link
-          to="/conjugation"
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg p-6 transition-all hover:-translate-y-1 border-t-4 border-violet-500"
-        >
+        <Link to="/conjugation" className={`${cardBase} border-t-4 border-violet-500`}>
           <h3 className="text-lg font-bold text-gray-800">Verb Conjugation</h3>
-          <p className="text-gray-500 text-sm mt-1">
-            Present tense tables for 20 common verbs.
-          </p>
+          <p className="text-gray-500 text-sm mt-1">Present tense tables for 20 common verbs.</p>
         </Link>
       </div>
 

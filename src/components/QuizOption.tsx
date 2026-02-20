@@ -14,7 +14,7 @@ export default function QuizOption({
   disabled,
 }: QuizOptionProps) {
   let classes =
-    "w-full px-4 py-3 rounded-xl border-2 text-lg font-medium transition-all ";
+    "w-full px-4 py-4 rounded-xl border-2 text-lg font-medium transition-all active:scale-95 select-none ";
 
   if (correct === null) {
     classes += selected
