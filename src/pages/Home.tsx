@@ -3,6 +3,8 @@ import { useProgress } from "../hooks/useProgress";
 import { lessons } from "../data/lessons";
 import { getWordsToReview } from "../lib/progress";
 import ProgressBar from "../components/ProgressBar";
+import HeroIllustration from "../components/HeroIllustration";
+import VyshyvankaDivider from "../components/VyshyvankaDivider";
 import { useEffect } from "react";
 
 const cardBase =
@@ -24,23 +26,26 @@ export default function Home() {
   return (
     <div className="page-enter">
       {/* Hero */}
-      <div className="text-center py-16 mb-4">
-        <div className="text-7xl sm:text-8xl font-display font-bold text-gradient animate-bounce-in">
-          UKY
-        </div>
-        <p
-          className="text-xl sm:text-2xl text-gray-600 mt-4 font-display font-medium animate-bounce-in"
-          style={{ animationDelay: "100ms" }}
-        >
-          Learn Ukrainian, letter by letter.
-        </p>
-        <div
-          className="flex items-center justify-center gap-2 mt-6 animate-bounce-in"
-          style={{ animationDelay: "200ms" }}
-        >
-          <div className="w-12 h-1.5 bg-ua-blue rounded-full" />
-          <div className="w-4 h-4 bg-ua-yellow rounded-full" />
-          <div className="w-12 h-1.5 bg-ua-yellow rounded-full" />
+      <div className="relative overflow-hidden rounded-3xl mb-4">
+        <HeroIllustration className="absolute inset-0 w-full h-full opacity-25 pointer-events-none" />
+        <div className="relative text-center py-16">
+          <div className="text-7xl sm:text-8xl font-display font-bold text-gradient animate-bounce-in">
+            UKY
+          </div>
+          <p
+            className="text-xl sm:text-2xl text-gray-600 mt-4 font-display font-medium animate-bounce-in"
+            style={{ animationDelay: "100ms" }}
+          >
+            Learn Ukrainian, letter by letter.
+          </p>
+          <div
+            className="flex items-center justify-center gap-2 mt-6 animate-bounce-in"
+            style={{ animationDelay: "200ms" }}
+          >
+            <div className="w-12 h-1.5 bg-ua-blue rounded-full" />
+            <div className="w-4 h-4 bg-ua-yellow rounded-full" />
+            <div className="w-12 h-1.5 bg-ua-yellow rounded-full" />
+          </div>
         </div>
       </div>
 
@@ -79,10 +84,14 @@ export default function Home() {
         </div>
       )}
 
+      {/* --- Divider: after hero/quick-actions --- */}
+      <VyshyvankaDivider className="w-full h-7 max-w-4xl mx-auto my-6 opacity-60" />
+
       {/* Class Units */}
       {classUnits.map((unit) => (
         <div key={unit}>
           <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+            <svg className="inline-block w-6 h-6 mr-2 -mt-1" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
             Class Unit {unit}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
@@ -112,8 +121,12 @@ export default function Home() {
         </div>
       ))}
 
+      {/* --- Divider: between Class Units and Lessons --- */}
+      <VyshyvankaDivider className="w-full h-7 max-w-4xl mx-auto my-6 opacity-60" />
+
       {/* Lessons */}
       <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+        <svg className="inline-block w-6 h-6 mr-2 -mt-1" viewBox="0 0 24 24" fill="none" stroke="#005BBB" strokeWidth="2" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M4 4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15z" /></svg>
         Lessons
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
@@ -148,8 +161,12 @@ export default function Home() {
         ))}
       </div>
 
+      {/* --- Divider: between Lessons and Games --- */}
+      <VyshyvankaDivider className="w-full h-7 max-w-4xl mx-auto my-6 opacity-60" />
+
       {/* Games */}
       <h2 className="text-2xl font-display font-bold text-gray-800 max-w-4xl mx-auto mb-4">
+        <svg className="inline-block w-6 h-6 mr-2 -mt-1" viewBox="0 0 24 24" fill="none" stroke="#FFD500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
         Games
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">

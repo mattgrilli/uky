@@ -222,6 +222,29 @@
 
 /* ===== Playful Background ===== */
 
+/* ===== Card Vyshyvanka Top Accent ===== */
+
+.card-vyshyvanka-top {
+  position: relative;
+}
+
+.card-vyshyvanka-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #C41E3A 0px, #C41E3A 6px,
+    #005BBB 6px, #005BBB 10px,
+    #C41E3A 10px, #C41E3A 16px,
+    transparent 16px, transparent 20px
+  );
+  border-radius: 999px 999px 0 0;
+}
+
 .bg-playful {
   background-color: #f0f6ff;
   background-image:
