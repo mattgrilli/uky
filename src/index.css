@@ -245,6 +245,21 @@
   border-radius: 999px 999px 0 0;
 }
 
+/* ===== Falling Words Game ===== */
+
+@keyframes wordFall {
+  0% { top: -3.5rem; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.falling-word {
+  animation-name: wordFall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
 .bg-playful {
   background-color: #f0f6ff;
   background-image:

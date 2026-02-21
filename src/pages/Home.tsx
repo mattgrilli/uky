@@ -94,6 +94,14 @@ export default function Home() {
             <svg className="inline-block w-6 h-6 mr-2 -mt-1" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
             Class Unit {unit}
           </h2>
+          <div className="max-w-4xl mx-auto mb-3 flex flex-wrap gap-2">
+            <Link
+              to={`/units/${unit}/falling-words`}
+              className="inline-flex items-center gap-1.5 bg-ua-blue-light text-ua-blue px-5 py-2 rounded-full font-display font-medium text-sm active:scale-95 transition-all hover:bg-ua-blue hover:text-white"
+            >
+              🌊 Falling Words
+            </Link>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
             {classLessons
               .filter((l) => l.classUnit === unit)

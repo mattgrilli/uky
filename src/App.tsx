@@ -16,6 +16,7 @@ import ListeningQuiz from "./pages/ListeningQuiz";
 import SpeedRound from "./pages/SpeedRound";
 import ReverseQuiz from "./pages/ReverseQuiz";
 import SpellIt from "./pages/SpellIt";
+import FallingWords from "./pages/FallingWords";
 import Review from "./pages/Review";
 import Dashboard from "./pages/Dashboard";
 
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="games/speed" element={<SpeedRound />} />
           <Route path="games/reverse" element={<ReverseQuiz />} />
           <Route path="games/spelling" element={<SpellIt />} />
+          <Route path="units/:unitNum/falling-words" element={<FallingWords />} />
           <Route path="review" element={<Review />} />
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
