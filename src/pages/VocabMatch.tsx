@@ -56,6 +56,13 @@ export default function VocabMatch() {
 
   const roundComplete = state.matched?.size === state.words?.length;
 
+  // Check if right-side word is matched (by finding if its corresponding left index is matched)
+  const isRightMatched = (rightIdx: number) => {
+    const rightWord = state.shuffledRight[rightIdx];
+    const leftIdx = state.words.findIndex((w) => w.uk === rightWord.uk);
+    return state.matched.has(leftIdx);
+  };
+
   const handleLeftClick = (idx: number) => {
     if (!state.words || state.matched.has(idx) || state.wrongPair) return;
 
@@ -71,7 +78,7 @@ export default function VocabMatch() {
     (idx: number) => {
       if (
         state.selectedLeft === null ||
-        state.matched.has(idx) ||
+        isRightMatched(idx) ||
         state.wrongPair
       )
         return;
@@ -161,13 +168,6 @@ export default function VocabMatch() {
       </div>
     );
   }
-
-  // Check if right-side word is matched (by finding if its corresponding left index is matched)
-  const isRightMatched = (rightIdx: number) => {
-    const rightWord = state.shuffledRight[rightIdx];
-    const leftIdx = state.words.findIndex((w) => w.uk === rightWord.uk);
-    return state.matched.has(leftIdx);
-  };
 
   return (
     <div className="page-enter max-w-2xl mx-auto">
